@@ -23,11 +23,8 @@ jobs:
       - name: Install spread
         run: sudo snap install spread --classic
 
-      - name: Install and init lxd
-        run: |
-          sudo snap install lxd
-          sudo lxd init --auto
-          sudo usermod -a -G lxd "$USER"
+      - name: Set up lxd
+        uses: canonical/setup-lxd@v0.1.2
 
       - name: Run spread tests
         uses: tlm/spread/.github/actions/spread-github@spread-events
