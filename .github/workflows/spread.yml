@@ -29,6 +29,8 @@ jobs:
       - name: Run spread tests
         uses: tlm/spread/.github/actions/spread-github@spread-events
         with:
+          spread-binary: /snap/bin/spread
           spread-args: "lxd:ubuntu-24.04:tests/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATH: /snap/bin:${{ env.PATH }}
