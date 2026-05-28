@@ -26,6 +26,9 @@ jobs:
       - name: Set up lxd
         uses: canonical/setup-lxd@v0.1.2
 
+      - name: Add snap binaries to PATH
+        run: echo /snap/bin >> "$GITHUB_PATH"
+
       - name: Run spread tests
         uses: tlm/spread/.github/actions/spread-github@spread-events
         with:
@@ -33,4 +36,3 @@ jobs:
           spread-args: "lxd:ubuntu-24.04:tests/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PATH: /snap/bin:${{ env.PATH }}
