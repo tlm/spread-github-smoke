@@ -1,0 +1,34 @@
+# Smoke-test workflow for canonical/spread's spread-github composite action.
+#
+# Provisions lxd on the runner, then invokes the action to run a small
+# spread project (one passing task, one failing task) and surface each
+# task as a GitHub Check Run.
+
+name: spread
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: read
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Install and init lxd
+        run: |
+          sudo snap install lxd
+          sudo lxd init --auto
+          sudo usermod -a -G lxd "$USER"
+
+      - name: Run spread tests
+        uses: canonical/spread/.github/actions/spread-github@spread-events
+        with:
+          spread-args: "lxd:ubuntu-24.04:tests/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

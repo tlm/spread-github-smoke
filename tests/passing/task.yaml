@@ -1,0 +1,4 @@
+summary: A task that always passes.
+
+execute: |
+    echo "passing task on $SPREAD_SYSTEM"

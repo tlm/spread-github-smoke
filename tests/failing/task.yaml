@@ -1,0 +1,5 @@
+summary: A task that always fails, to verify the failure conclusion.
+
+execute: |
+    echo "failing task on $SPREAD_SYSTEM"
+    exit 1

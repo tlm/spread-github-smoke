@@ -1,0 +1,12 @@
+project: spread-github-smoke
+
+path: /home/test
+
+backends:
+    lxd:
+        systems:
+            - ubuntu-24.04
+
+suites:
+    tests/:
+        summary: Smoke tests for spread-github reporting.
