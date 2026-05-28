@@ -34,3 +34,5 @@ Runs (one `success`, one `failure`), each named after its spread task id.
 - spread-github reads the spread event stream and POSTs/PATCHes Check Runs.
 - The pass and fail task outcomes map to the right Check Run conclusions.
 - spread's stdout still passes through to the workflow's log.
+
+PR smoke check trigger.
