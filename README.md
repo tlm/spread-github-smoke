@@ -10,7 +10,7 @@ action end-to-end against GitHub Actions.
 - `tests/failing/` — task that always fails.
 - `.github/workflows/spread.yml` — workflow that provisions lxd and invokes
   the spread-github action, pinned to the `spread-events` branch of
-  `canonical/spread`.
+  `tlm/spread`.
 
 ## Usage
 

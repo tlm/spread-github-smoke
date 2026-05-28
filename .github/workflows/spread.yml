@@ -1,4 +1,4 @@
-# Smoke-test workflow for canonical/spread's spread-github composite action.
+# Smoke-test workflow for tlm/spread's spread-github composite action.
 #
 # Provisions lxd on the runner, then invokes the action to run a small
 # spread project (one passing task, one failing task) and surface each
@@ -27,7 +27,7 @@ jobs:
           sudo usermod -a -G lxd "$USER"
 
       - name: Run spread tests
-        uses: canonical/spread/.github/actions/spread-github@spread-events
+        uses: tlm/spread/.github/actions/spread-github@spread-events
         with:
           spread-args: "lxd:ubuntu-24.04:tests/"
         env:
