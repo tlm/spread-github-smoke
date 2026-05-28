@@ -20,8 +20,17 @@ jobs:
       - name: Check out
         uses: actions/checkout@v4
 
-      - name: Install spread
-        run: sudo snap install spread --classic
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Build spread from source
+        run: |
+          git clone --branch spread-events --depth 1 https://github.com/tlm/spread.git .spread-src
+          cd .spread-src
+          go build -o "$HOME/.local/bin/spread" ./cmd/spread
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
       - name: Set up lxd
         uses: canonical/setup-lxd@v0.1.2
@@ -32,7 +41,6 @@ jobs:
       - name: Run spread tests
         uses: tlm/spread/.github/actions/spread-github@spread-events
         with:
-          spread-binary: /snap/bin/spread
           spread-args: "lxd:ubuntu-24.04:tests/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
