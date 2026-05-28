@@ -2,4 +2,5 @@ summary: A task that always fails, to verify the failure conclusion.
 
 execute: |
     echo "failing task on $SPREAD_SYSTEM"
+    sleep 120
     exit 1
